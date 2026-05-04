@@ -27,8 +27,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.log
-*.pkl
-backend/models/*.pkl
 backend/data/*.csv
 backend/data/*.json
 !backend/data/sample.json
