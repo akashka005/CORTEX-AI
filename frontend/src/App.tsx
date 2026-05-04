@@ -7,6 +7,8 @@ import MessageItem from "./components/MessageItem";
 import NeuralBackground from "./components/NeuralBackground";
 import { Message, ChatResponse } from "./types";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 interface ChatSession {
   id: string;
   title: string;
@@ -38,7 +40,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/usage")
+    fetch(`${API_BASE_URL}/usage`)
       .then(res => res.json())
       .then(data => {
         setUsage(data);
@@ -102,7 +104,7 @@ export default function App() {
     setError(null);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/chat", {
+      const res = await fetch(`${API_BASE_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -249,7 +251,7 @@ export default function App() {
                     key={msg.id}
                     message={msg}
                     onFeedback={(reward) => {
-                      fetch("http://127.0.0.1:8000/feedback", {
+                      fetch(`${API_BASE_URL}/feedback`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ state: msg.state, action: msg.action, reward })
