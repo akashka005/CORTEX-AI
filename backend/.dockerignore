@@ -13,6 +13,4 @@ htmlcov/
 .mypy_cache/
 .ipynb_checkpoints
 data/
-models/*.joblib
-models/*.pkl
 scratch/
